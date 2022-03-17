@@ -1,0 +1,23 @@
+```{r}
+library(tidyverse)
+library(tidyr)
+library(dplyr)
+library(here)
+
+my_data <- read_csv('./data/data.csv')
+
+my_data %>% 
+  summarize(dur_avg = mean(durationV), f0_avg = mean(f0), int_avg = mean(int))
+
+my_data %>% 
+  separate(., col = info, into = c("item", "stress"), sep = "_") %>%
+  ggplot(., aes(x = stress, y = f0, color = item)) +
+    geom_point() 
+
+my_data %>% 
+  separate(., col = info, into = c("item", "stress"), sep = "_") %>%
+  ggplot(., aes(x = stress, y = int, color = item)) +
+    geom_point() 
+
+    
+```
